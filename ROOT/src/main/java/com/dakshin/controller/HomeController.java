@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.owasp.esapi.ESAPI;
 
 import com.dakshin.amfi.dao.AmfiApiAccessRepository;
 import com.dakshin.amfi.model.DownloadCenter;
@@ -42,6 +43,7 @@ import com.dakshin.utils.SendEmailUtil;
 import com.dakshin.utils.StatusCodesAndMessages;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.dakshin.utils.StatusMessage;
 
 @Controller
 public class HomeController {
@@ -513,6 +515,98 @@ public class HomeController {
 			subject = subject.trim();
 			message = message.trim();
 			support_email = support_email.trim();
+			
+			String validationErrorMsg = "";
+			if (validationErrorMsg.equalsIgnoreCase("")) 
+			{
+				if (ESAPI.validator().isValidInput("name", request.getParameter("name"), "SafeString", 100, true)) 
+				{
+					name = request.getParameter("name");
+				} 
+				else 
+				{
+					validationErrorMsg = "Please enter a valid name";
+				}
+				if(name.length() <= 3) 
+				{
+					validationErrorMsg = "Please enter a valid name";
+				}
+			}
+			
+			if (validationErrorMsg.equalsIgnoreCase("")) 
+			{
+				if (ESAPI.validator().isValidInput("message", request.getParameter("message"), "SafeString", 100,true)) 
+				{
+					message = request.getParameter("message");
+				} 
+				else 
+				{
+					validationErrorMsg = "Please enter a valid message";
+				}
+				if(message.length() <= 10) 
+				{
+					validationErrorMsg = "Please enter your message";
+				}
+			}
+			
+			
+			if (validationErrorMsg.equalsIgnoreCase("")) 
+			{
+				if (ESAPI.validator().isValidInput("email", request.getParameter("email"), "Email", 100, true)) 
+				{
+					email = request.getParameter("email");
+				} 
+				else 
+				{
+					validationErrorMsg = "Please enter a valid email";
+				}
+				if(email.length() <= 5) 
+				{
+					validationErrorMsg = "Please enter a valid email";
+				}
+			}
+			
+			
+			if (validationErrorMsg.equalsIgnoreCase("")) 
+			{
+				if (ESAPI.validator().isValidInput("subject", request.getParameter("subject"), "SafeString", 100, true)) 
+				{
+					subject = request.getParameter("subject");
+				} 
+				else 
+				{
+					validationErrorMsg = "Please enter a valid subject";
+				}
+				if(subject.length() <= 10) 
+				{
+					validationErrorMsg = "Please enter a valid subject";
+				}
+			}
+			
+			
+			if (validationErrorMsg.equalsIgnoreCase("")) 
+			{
+				if (ESAPI.validator().isValidInput("support_email", request.getParameter("support_email"), "Email", 100, true)) 
+				{
+					support_email = request.getParameter("support_email");
+				} 
+				else 
+				{
+					validationErrorMsg = "Please enter a valid email";
+				}
+				if(email.length() <= 5) 
+				{
+					validationErrorMsg = "Please enter a valid email";
+				}
+			}
+			
+			if(!validationErrorMsg.isEmpty())
+			{
+				commonResponse.setStatus(StatusMessage.FailureCode);
+				commonResponse.setStatus_msg(StatusMessage.FailureMessage);
+				commonResponse.setMsg(validationErrorMsg);
+				writer.println(gson.toJson(commonResponse));
+			}
 			
 			ContactFeedback  savefeedback = new ContactFeedback();
 			savefeedback.setName(name);

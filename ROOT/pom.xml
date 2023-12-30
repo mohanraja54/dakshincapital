@@ -141,6 +141,34 @@
 		    <version>3.9</version>
 		</dependency>
 		
+		<dependency>
+        	<groupId>org.owasp.esapi</groupId>
+        	<artifactId>esapi</artifactId>
+        	<version>2.0.1</version>
+        	<exclusions>
+        		<exclusion>
+        			<groupId>xml-apis</groupId>
+        			<artifactId>xml-apis</artifactId>
+        		</exclusion>
+        		<exclusion>
+        			<groupId>xml-apis</groupId>
+        			<artifactId>xml-apis-ext</artifactId>
+        		</exclusion>
+        		<exclusion>
+        			<groupId>org.owasp.antisamy</groupId>
+        			<artifactId>antisamy</artifactId>
+        		</exclusion>
+        		<exclusion>
+        			<groupId>xom</groupId>
+        			<artifactId>xom</artifactId>
+        		</exclusion>
+        		<exclusion>
+        			<groupId>org.beanshell</groupId>
+        			<artifactId>bsh-core</artifactId>
+        		</exclusion>
+        	</exclusions>
+		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
 		<dependency>
 		    <groupId>org.apache.poi</groupId>
