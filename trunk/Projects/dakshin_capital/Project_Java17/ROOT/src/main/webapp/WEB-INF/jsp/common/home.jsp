@@ -475,12 +475,6 @@
 		var subject = $("#subject").val();
 		var message = $("#message").val();
 		
-		
-		alert(name);
-		alert(email);
-		alert(subject);
-		alert(message);
-		
 		if(name == "")
 	    { 	  
 		    swal("OOPS!", "Please enter your name!", "error")
@@ -503,18 +497,15 @@
 			var obj = jQuery.parseJSON(result);	
 			 if(obj.status == "200")	   
 			 {
-				 /* swal({
-					  title: "Congratulations?",
-					  text: "Thanks for giving feedback.",
-					  type: "success"
-					});  */
-					alert("Thanks for Contacting Us. We will get back to you soon");
+				 swal({title:"",text:"Thanks for contacting us. Soon we will get in touch with you!"});
 					$("#name").val("");
 					$("#email").val("");
 					$("#subject").val("");
 					$("#message").val("");
 			 }
-			
+	          else{			
+					swal({title:"",text:obj.msg});
+				}
 	        
 	    }, "text");
 	}

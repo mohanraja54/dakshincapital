@@ -56,7 +56,7 @@ $(document).ready(function(){
                 <li><a href="/goal/robo-advisor"><span class="ion-ios-arrow-round-forward mr-2"></span>Lumpsum Robo Advise</a></li>
                 <li><a href="/goal/robo-sip"><span class="ion-ios-arrow-round-forward mr-2"></span>SIP Robo Advise</a></li>
                 <li><a href="/mutual-funds-research/model-portfolio"><span class="ion-ios-arrow-round-forward mr-2"></span>Model Portfolios</a></li>
-                <li><a class="goal_plan" href="/mutual-funds-research/goal/child-education"><span class="ion-ios-arrow-round-forward mr-2"></span>Create Your Goal</a></li>
+                <li><a class="goal_plan" href="/goal/child-education"><span class="ion-ios-arrow-round-forward mr-2"></span>Create Your Goal</a></li>
                 <li><a href="/fd-rates"><span class="ion-ios-arrow-round-forward mr-2"></span>FD Rates</a></li>
               </ul>
             </div>
