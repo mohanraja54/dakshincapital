@@ -638,6 +638,8 @@ public class HomeController {
 				writer.println(gson.toJson(commonResponse));
 			}
 			
+			else 
+			{
 			ContactFeedback  savefeedback = new ContactFeedback();
 			savefeedback.setName(name);
 		    savefeedback.setEmail(email);
@@ -657,6 +659,7 @@ public class HomeController {
 	 		writer.println(gson.toJson(commonResponse));
 	 		writer.close();
 			
+		}
 		}
 		catch(Exception ex)
 		{
