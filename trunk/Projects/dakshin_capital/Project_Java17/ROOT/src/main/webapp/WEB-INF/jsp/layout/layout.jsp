@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="/plugins/swal/swal.css">
   <link rel="stylesheet" href="/plugins/bootstrap-slider/slider.css">
   <link rel="stylesheet" href="/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css">
+  <link href="<c:url value="/css/bootstrap/css/ladda-themeless.min.css"/>" rel="stylesheet">
   <link rel="stylesheet" href="/plugins/datatables/datatables.min.css">
   <link rel="stylesheet" href="/css/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/style.css">
@@ -36,6 +37,9 @@
   <script src="/plugins/loadingoverlay/loadingoverlay.js"></script>
   <script src="<c:url value="/js/jqBootstrapValidation.min.js"/>"></script>
   <script type="text/javascript" src="<c:url value="/js/html2canvas.js"/>"></script>
+  
+  <script src="<c:url value="/js/spin.min.js"/>"></script>
+  <script src="<c:url value="/js/ladda.min.js"/>"></script>
   <script>
   $(document).ready(function(){
   $("#adv-login-form").find("input,textarea,select").jqBootstrapValidation(
