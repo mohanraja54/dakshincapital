@@ -33,7 +33,7 @@
 .btn{
 	padding: 0.375rem 0.65rem;
 }
-#txt_email_subscription1::placeholder {
+#txt_email_subscription::placeholder {
   color: rgba(255, 255, 255, 0.7) !important;
 }
 
@@ -119,6 +119,56 @@
 		$('.horizonBtn').removeClass('activePeriod');
 		$('.'+periodTop).addClass('activePeriod');
 	});
+	
+	function validateEmail(email)
+	{    
+		var re = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+	    if(re.test(email))
+	    {
+	       return true;
+		}
+	    else
+	    {
+	       return false;
+	    }
+	}
+	function subscribeEmail()
+	{
+		var email = $.trim($("#txt_email_subscription").val());
+	    if(email == "")
+	    {
+	    	swal({title:"",text:"Please enter your email"});
+	 		return false;
+	    }
+	    if(!validateEmail(email))
+	    {
+	    	swal({title:"",text:"Please enter valid email"});
+	 		return false;
+	    }
+	    var ele = document.getElementById("subscribe_home_btn");
+	 	var l = Ladda.create(ele);
+	 	l.start();
+	 	
+	    $.post("/subscribeForEmail", {email : "" + email + "", page : "Website - home"}, function(data)
+	    {
+	    	l.stop();
+	    	
+	    	var result = $.trim(data);
+	        var obj = jQuery.parseJSON(result);
+	        
+	        if(obj.status == 400)
+	        {
+	        	//swal("Thanks!", "Entered email id is already subscribed!", "success");
+	        	swal("Thanks!", obj.msg, "success");
+	            $("#txt_email_subscription").val("");
+	            return false;
+	        }
+	        
+	        swal("Thanks!", "We will be in touch with you!", "success");
+	        $("#txt_email_subscription").val("");
+	        return false;		
+	    }, "text");
+	}
 	
 	function onParameterChange()
 	{
@@ -940,14 +990,13 @@
           </div>
           <div class="col-lg-5 col-md-4 ftco-animate">
           	<div class="mb-0" style="display:flex">
-          		<input type="text" style="width: 100%;background: rgba(255, 255, 255, 0.1) !important;border: 2px solid #fff;;color: rgba(255, 255, 255, 1) !important;font-size: 16px;" class="form-control mb-2 text-center" placeholder="Enter email address" id="txt_email_subscription1">
-          		<input type="submit" style="margin-left:20px; color: #fff !important;font-size: 16px;background: #ffa200 !important;border: none !important;border-radius: 2px;transition: all 0.3s ease;" value="Subscribe" onclick="subscribeEmail()" class="form-control submit px-3">
+          		<input type="text" style="width: 100%;background: rgba(255, 255, 255, 0.1) !important;border: 2px solid #fff;;color: rgba(255, 255, 255, 1) !important;font-size: 16px;" class="form-control mb-2 text-center" placeholder="Enter email address" id="txt_email_subscription">
+          		<button id="subscribe_home_btn" style="margin-left:20px; color: #fff !important;font-size: 16px;background: #ffa200 !important;border: none !important;border-radius: 2px;transition: all 0.3s ease;" type="submit" onclick="subscribeEmail()" class="form-control submit px-3"> <span class="ladda-label">Subscribe</span> </button>          	  
           	</div>
           </div>
         </div>	
     	</div>
     </section>
-
 
 		<section class="ftco-section bg-light">
 			<div class="container">

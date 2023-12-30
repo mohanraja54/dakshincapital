@@ -311,6 +311,35 @@ public class HomeController {
 			email = email.trim();
 			page = page.trim();
 			
+            String validationErrorMsg = "";
+			
+			if(validationErrorMsg.equalsIgnoreCase("")) {
+				if(ESAPI.validator().isValidInput("email", request.getParameter("email"), "Email", 100, false) && validationErrorMsg.equalsIgnoreCase(""))
+				{
+					email = request.getParameter("email");
+				}
+				else
+				{
+					validationErrorMsg = "Please enter a valid email address";
+				}
+				if(email.length() <= 5) 
+				{
+					validationErrorMsg = "Please enter a valid email address";
+				}
+			}
+			
+			if(!validationErrorMsg.equalsIgnoreCase(""))
+			{
+				commonResponse.setStatus(StatusMessage.FailureCode);
+				commonResponse.setStatus_msg(StatusMessage.FailureMessage);
+				commonResponse.setMsg(validationErrorMsg);
+				writer.print(gson.toJson(commonResponse));
+    			writer.close();
+    			return;
+			}
+			
+			else 
+			{
 			int id = emailSubscriptionRespository.subscribeForEmail(email, page);
 			
 			if(id == 0)
@@ -329,6 +358,7 @@ public class HomeController {
 			commonResponse.setMsg("Email id added successfully");
     		writer.print(gson.toJson(commonResponse));
 			writer.close();
+		   }
 		}
 		catch(Exception ex)
 		{
