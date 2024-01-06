@@ -35,7 +35,7 @@
 	            	Just fill up your Retirement Planning Form and logon to our Member Login section to start your Financial Planning - You will be impressed at how speedily your money will compound.   
 	            </p>
 	                  
-	            <a href="/mutual-funds-research/goal/retirement"> Start Your Retirement Planning Now </a>
+	            <a href="/goal/retirement"> Start Your Retirement Planning Now </a>
 	          </div>
 	          <div class="col-md-6">
 	          	<img src="/images/retirement.jpg" style="width:100%;" alt="Retirement Planning">

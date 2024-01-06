@@ -39,7 +39,7 @@
 	            	The time to start is now. ! Just fill up your Kids Marriage & Eduaction Planning Form and logon to our Member Login section to start your Financial Planning for Kids.    
 	            </p>
 	            	                  
-	            <a href="/mutual-funds-research/goal/marriage"> Start Your Kids Marriage Planning Now  </a>
+	            <a href="/goal/marriage"> Start Your Kids Marriage Planning Now  </a>
 	          </div>
 	          <div class="col-md-6">
 	          	<img src="/images/kidsmarriage.jpg" style="width:100%;" class="mt-5" alt="Wedding Planning">
